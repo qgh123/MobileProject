@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2>Account的注册组件</h2>
+		<h3>MemberContainer</h3>
 	</div>
 </template>
 
