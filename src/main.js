@@ -1,16 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import app from './App.vue'
+import axios from 'axios'
 
 import '../lib/css/mui.min.css'
 import '../lib/css/icons-extra.css'
 import '../node_modules/mint-ui/lib/style.css'
 
-import {Header} from 'mint-ui'
+import {Header,Swipe, SwipeItem} from 'mint-ui'
 import router from './router.js'
 
-Vue.component(Header.name, Header)
 Vue.use(VueRouter)
+// Vue.use(axios)
+Vue.component(Header.name, Header)
+Vue.component(Swipe.name, Swipe)
+Vue.component(SwipeItem.name, SwipeItem)
 
 var vm = new Vue({
 	el: '#app',
@@ -18,25 +22,3 @@ var vm = new Vue({
 	router
 })
 
-/* import Vue from 'vue'
-import login from './view/login.vue'
-import register from './view/register.vue'
-import account from './view/account.vue'
-import goodsList from './view/goodslist.vue'
-
-
-Vue.use(VueRouter)
-
-var vm = new Vue({
-	el: '#app',
-	data: {
-		msg: 'test111'
-	},
-	methods: {
-		
-	},
-	components:{
-		login
-	},
-	router
-}) */
