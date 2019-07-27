@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import app from './App.vue'
 import axios from 'axios'
+import moment from 'moment'
 
 import '../lib/css/mui.min.css'
 import '../lib/css/icons-extra.css'
@@ -16,6 +17,10 @@ Vue.use(VueRouter)
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+
+Vue.filter('dateFormat', function(dateStr, pattern = "YYYY-MM-DD HH:mm:ss"){
+	return moment(dateStr).format(pattern)
+})
 
 var vm = new Vue({
 	el: '#app',

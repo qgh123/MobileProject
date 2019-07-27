@@ -1,42 +1,46 @@
 <template>
 	<div>
 		<ul class="mui-table-view">
-			<li class="mui-table-view-cell mui-media">
-				<a href="javascript:;">
-					<img class="mui-media-object mui-pull-left" src="https://static.hdslb.com/images/member/noface.gif">
+			<li class="mui-table-view-cell mui-media" v-for="item in newsList" :key="item.id">
+				<router-link :to="'/home/newsinfo/' + item.id">
+					<img class="mui-media-object mui-pull-left" :src="item.img_url">
 					<div class="mui-media-body">
-						<h2>幸福</h2>
+						<h2>{{item.title}}</h2>
 						<p class='mui-ellipsis'>
-							<span class="font">发表时间：2019-7-27 13:20:00</span>
-							<span class="font">点击：0次</span>
+							<span class="font">发表时间：{{item.add_time | dateFormat()}}</span>
+							<span class="font">点击：{{item.click}}次</span>
 						</p>
 					</div>
-				</a>
+				</router-link>
 			</li>
-			<li class="mui-table-view-cell mui-media">
-				<a href="javascript:;">
-					<img class="mui-media-object mui-pull-left" src="https://static.hdslb.com/images/member/noface.gif">
-					<div class="mui-media-body">
-						木屋
-						<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
-					</div>
-				</a>
-			</li>
-			<li class="mui-table-view-cell mui-media">
-				<a href="javascript:;">
-					<img class="mui-media-object mui-pull-left" src="https://static.hdslb.com/images/member/noface.gif">
-					<div class="mui-media-body">
-						CBD
-						<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-					</div>
-				</a>
-			</li>
-
 		</ul>
 	</div>
 </template>
 
 <script>
+	import request from '../../utils/request.js'
+	import {Toast} from 'mint-ui'
+	export default{
+		data(){
+			return {
+				newsList: []
+			}
+		},
+		mounted(){
+			this.getNewsList()
+		},
+		methods: {
+			getNewsList(){
+				request.get('/api/getnewslist').then(res => {
+					if(res.data.status == 0){
+						this.newsList = res.data.message
+					}else{
+						Toast("获取新闻列表失败")
+					}
+				})
+			}
+		}
+	}
 </script>
 
 <style scoped>

@@ -1,7 +1,11 @@
 <template>
 	<div class="app-container">
 		<!-- Header区域 -->
-		<mt-header fixed title="Vue小项目"></mt-header>
+		<mt-header fixed title="Vue小项目">
+			<router-link to="/" slot="left">
+				<mt-button icon="back">&lt;</mt-button>
+			 </router-link>
+		</mt-header>
 		
 		<transition mode="out-in">
 			<router-view></router-view>
@@ -35,6 +39,7 @@
 <style scoped>
 	.app-container{
 		padding-top: 40px;
+		padding-bottom: 50px;
 		overflow-x: hidden;
 	}
 	.v-enter{

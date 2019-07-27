@@ -32,7 +32,7 @@
 </template>
 
 <script>
-	import axios from 'axios'
+	import request from '../../utils/request.js'
 	export default{
 		data(){
 			return {
@@ -44,10 +44,7 @@
 		},
 		methods: {
 			getLunbo(){
-				axios({
-					url: 'http://www.liulongbin.top:3005/api/getLunbo',
-					method: 'get'
-				}).then(res => {
+				request.get('http://www.liulongbin.top:3005/api/getLunbo').then(res => {
 					this.lunboList = res.data.message
 				})
 			}
