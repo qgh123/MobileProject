@@ -10,6 +10,7 @@ import '../node_modules/mint-ui/lib/style.css'
 import {Header,Swipe, SwipeItem} from 'mint-ui'
 import router from './router.js'
 
+//这是一条注释
 Vue.use(VueRouter)
 // Vue.use(axios)
 Vue.component(Header.name, Header)
