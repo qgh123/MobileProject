@@ -2,8 +2,8 @@
 	<div class="cmt-container">
 		<h3>发表评论</h3>
 		<hr />
-		<textarea placeholder="请输入要评论的内容(最多120个字)" maxlength="120"></textarea>
-		<mt-button type="primary" size="large">发表评论</mt-button>
+		<textarea placeholder="请输入要评论的内容(最多120个字)" maxlength="120" v-model="comment"></textarea>
+		<mt-button type="primary" size="large" @click="publishComment">发表评论</mt-button>
 		
 		<div class="cmt-list" v-for="(comment, index) in comments">
 			<div class="cmt-item">
@@ -22,11 +22,15 @@
 
 <script>
 	import request from '../../utils/request.js'
+	import {Toast} from 'mint-ui'
 	
 	export default{
 		data(){
 			return {
 				pageIndex: 1,
+				//要发表的评论内容
+				comment: '',
+				//评论列表
 				comments: []
 			}
 		},
@@ -42,6 +46,19 @@
 			more(){
 				this.pageIndex++
 				this.getComments()
+			},
+			publishComment(){
+				if(this.comment.trim().length == 0){
+					return Toast("评论内容不能为空")
+				}
+				request.post('/api/postcomment/' + this.$route.params.id, {content: this.comment.trim()}).then(res => {
+					if(res.data.status == 0){
+						this.pageIndex = 1
+						this.comment = ''
+						this.getComments()
+					}
+				})
+				
 			}
 		},
 		props: ['id']
