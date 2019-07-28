@@ -3,7 +3,7 @@
 		<!-- Header区域 -->
 		<mt-header fixed title="Vue小项目">
 			<router-link to="/" slot="left">
-				<mt-button icon="back">&lt;</mt-button>
+				<a icon="back">&lt;</a>
 			 </router-link>
 		</mt-header>
 		

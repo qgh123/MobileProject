@@ -44,6 +44,10 @@ module.exports = {
 				]
 			},
 			{
+				test: /\.less$/,
+				use: ['style-loader', 'css-loader', 'less-loader']
+			},
+			{
 				test: /\.(jpg|jpeg|gif|png|bmp)$/, 
 				use: {
 						loader: 'url-loader',
